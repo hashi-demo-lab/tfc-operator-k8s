@@ -1,3 +1,7 @@
+######################
+##  TFE config
+######################
+
 data "tfe_organization" "this" {
   name = "hashi-demos-apj"
 }
@@ -14,7 +18,7 @@ resource "tfe_variable_set" "operator" {
 }
 
 resource "tfe_team" "operator" {
-  name         = "team1"
+  name         = tfe_project.operator.name
   visibility   = "organization"
   organization = data.tfe_organization.this.name
 }
@@ -35,4 +39,44 @@ resource "tfe_variable" "tfe-token" {
   sensitive       = true
   description     = "TFE_TOKEN enviroment variable for admin project."
   variable_set_id = tfe_variable_set.operator.id
+}
+
+######################
+##  K8s config
+######################
+
+# create K8s namespace
+resource "kubernetes_namespace" "operator" {
+  metadata {
+    name = tfe_project.operator.name
+  }
+}
+
+
+# create K8s secret for TFE token
+resource "kubernetes_secret" "terraformrc" {
+  metadata {
+    name      = "terraformrc"
+    namespace = kubernetes_namespace.operator.metadata[0].name
+  }
+
+  data = {
+    "credentials" = <<EOT
+credentials app.terraform.io {
+  token = "${tfe_team_token.operator.token}"
+}
+EOT
+  }
+}
+
+
+// Terraform Cloud Operator for K8s helm chart
+resource "helm_release" "operator" {
+  name       = "terraform-cloud-operator"
+  repository = "https://helm.releases.hashicorp.com" 
+  chart      = "terraform-cloud-operator"
+  version    = "2.0.0-beta8"
+  namespace = kubernetes_secret.terraformrc.metadata[0].namespace
+  devel = "true" #allow beta chart
+
 }

@@ -26,17 +26,18 @@ helm install demo hashicorp/terraform-cloud-operator \
 
 # credentials file format
 
-#        credentials app.terraform.io {
-#          token = "TERRAFORM_CLOUD_API_TOKEN"
-#        }
+ #     credentials app.terraform.io {
+ #        token = "TERRAFORM_CLOUD_API_TOKEN"
+ #     }
 
 
 #create k8s secret with TFE teams token in credentials file to read from
 kubectl -n tfc-operator-system create secret generic terraformrc --from-file=$HOME/credentials
 
 
-
-
+# Export Kubeconfig
+kubectl config view --raw >> $HOME/kubeconfig
+export KUBE_CONFIG_PATH=$HOME/kubeconfig
 
 # Upgrade provider
 #
