@@ -1,0 +1,10 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+# configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-configuration
+data:
+  region: us-east-1
