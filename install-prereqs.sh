@@ -3,6 +3,10 @@ brew install helm
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo update
 
+
+# optional not required only for controller metrics to prometheus
+#docker run -p 9090:9090 prom/prometheus
+
 #search for beta versions
 helm search repo hashicorp/terraform-cloud-operator --versions --devel
 
