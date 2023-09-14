@@ -20,7 +20,16 @@ resource "tfe_variable_set" "operator" {
 resource "tfe_team" "operator" {
   name         = tfe_project.operator.name
   visibility   = "organization"
+  organization_access {
+  manage_workspaces       = true
+  }
   organization = data.tfe_organization.this.name
+}
+
+resource "tfe_team_project_access" "admin" {
+  access       = "admin"
+  team_id      = tfe_team.operator.id
+  project_id   = tfe_project.operator.id
 }
 
 resource "tfe_team_token" "operator" {
@@ -52,31 +61,25 @@ resource "kubernetes_namespace" "operator" {
   }
 }
 
-
 # create K8s secret for TFE token
-resource "kubernetes_secret" "terraformrc" {
+resource "kubernetes_secret" "operator" {
   metadata {
-    name      = "terraformrc"
+    name      = "tfc-operator"
     namespace = kubernetes_namespace.operator.metadata[0].name
   }
 
   data = {
-    "credentials" = <<EOT
-credentials app.terraform.io {
-  token = "${tfe_team_token.operator.token}"
-}
-EOT
+    token =  "${tfe_team_token.operator.token}"
   }
 }
 
-
-// Terraform Cloud Operator for K8s helm chart
+# Terraform Cloud Operator for K8s helm chart
 resource "helm_release" "operator" {
   name       = "terraform-cloud-operator"
   repository = "https://helm.releases.hashicorp.com" 
   chart      = "terraform-cloud-operator"
   version    = "2.0.0-beta8"
-  namespace = kubernetes_secret.terraformrc.metadata[0].namespace
+  namespace = kubernetes_secret.operator.metadata[0].namespace
   devel = "true" #allow beta chart
 
 }

@@ -1,0 +1,16 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Module
+metadata:
+  name: demo-module-aws-vpc
+spec:
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  name: demo-module
+  module:
+    source: "terraform-aws-modules/vpc/aws//examples/simple"
+    version: "5.1.2"
+  workspace:
+    name: demo-crd-workspace1

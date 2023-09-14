@@ -33,11 +33,14 @@ helm install demo hashicorp/terraform-cloud-operator \
 
 #create k8s secret with TFE teams token in credentials file to read from
 kubectl -n tfc-operator-system create secret generic terraformrc --from-file=$HOME/credentials
+kubectl -n team1-project-a get secret tfc-operator --template={{.data.credentials}} | base64 --decode
 
 
-# Export Kubeconfig
-kubectl config view --raw >> $HOME/kubeconfig
+
+# Export Kubeconfig - user kubeconfig path for authentication in provider
 export KUBE_CONFIG_PATH=$HOME/kubeconfig
+
+
 
 # Upgrade provider
 #
@@ -45,3 +48,10 @@ export KUBE_CONFIG_PATH=$HOME/kubeconfig
 #
 
 
+# set namespace contextS
+namespace="team1-project-a"
+kubectl config set-context --current --namespace="$namespace"
+
+
+#force delete namespace
+kubectl delete namespace team1-project-a --grace-period=0 --force
