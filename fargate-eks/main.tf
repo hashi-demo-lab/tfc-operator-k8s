@@ -33,7 +33,7 @@ data "aws_availability_zones" "available" {}
 locals {
   name     = basename(path.cwd)
   region   = "us-west-2"
-  app_name = "app-2048"
+  app_name = "app-hashibank"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -195,7 +195,7 @@ resource "kubernetes_namespace_v1" "this" {
   }
 }
 
-resource "kubernetes_deployment_v1" "this" {
+/* resource "kubernetes_deployment_v1" "this" {
   metadata {
     name      = local.app_name
     namespace = kubernetes_namespace_v1.this.metadata[0].name
@@ -252,3 +252,4 @@ resource "kubernetes_service_v1" "this" {
     type = "NodePort"
   }
 }
+ */
