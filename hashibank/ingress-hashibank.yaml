@@ -13,9 +13,10 @@ spec:
     - http:
         paths:
           - pathType: Prefix
+            path: /
             backend:
               service:
                 name: hashibank
                 port:
                   number: 8080
-            path: /
+            
