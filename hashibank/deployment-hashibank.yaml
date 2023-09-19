@@ -28,12 +28,12 @@ spec:
             limits:
               cpu: 200m
               memory: 256Mi
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: hashibank
+  namespace: app-hashibank
 spec:
   selector:
     app: hashibank
