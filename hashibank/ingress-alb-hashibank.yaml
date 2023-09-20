@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing 
     alb.ingress.kubernetes.io/target-type: ip
-   # alb.ingress.kubernetes.io/wafv2-acl-arn: <arm here> # Update with WAFv2 ARN for region
+  # alb.ingress.kubernetes.io/wafv2-acl-arn: <arm here> # Update with WAFv2 ARN for region
 spec:
   ingressClassName: alb
   rules:

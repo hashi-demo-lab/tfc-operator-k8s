@@ -46,7 +46,12 @@ export KUBE_CONFIG_PATH=$HOME/kubeconfig
 #
 # helm upgrade --namespace ${RELEASE_NAMESPACE} ${RELEASE_NAME} hashicorp/terraform
 #
+#set context to local docker K8s
+kubectl config use-context docker-desktop
 
+#Export config
+kubectl config view --raw > $HOME/kubeconfig
+export KUBE_CONFIG_PATH=$HOME/kubeconfig # Environment used by terraform run
 
 # set namespace contextS
 namespace="team1-project-a"
