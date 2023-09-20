@@ -57,7 +57,7 @@ resource "tfe_variable" "tfe-token" {
 # create K8s namespace
 resource "kubernetes_namespace" "operator" {
   metadata {
-    name = tfe_project.operator.name
+    name = var.namespace
   }
 }
 

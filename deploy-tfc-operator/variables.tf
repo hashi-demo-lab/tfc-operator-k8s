@@ -8,3 +8,8 @@ variable "operator_team" {
   default = "tfc-operator-platformteam"
 
 }
+
+variable "namespace" {
+  type = string
+  default = "app-hashibank"
+}
