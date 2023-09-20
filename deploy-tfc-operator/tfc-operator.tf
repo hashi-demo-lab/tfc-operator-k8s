@@ -1,5 +1,5 @@
 ######################
-##  TFE config
+##  TFE/TFC config
 ######################
 
 data "tfe_organization" "this" {
