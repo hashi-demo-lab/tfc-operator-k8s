@@ -3,12 +3,12 @@
 ######################
 
 data "tfe_organization" "this" {
-  name = "hashi-demos-apj"
+  name = var.organization
 }
 
 resource "tfe_project" "operator" {
   organization = data.tfe_organization.this.name
-  name         = "team1-project-a"
+  name         = var.operator_team
 }
 
 resource "tfe_variable_set" "operator" {
@@ -18,18 +18,18 @@ resource "tfe_variable_set" "operator" {
 }
 
 resource "tfe_team" "operator" {
-  name         = tfe_project.operator.name
-  visibility   = "organization"
+  name       = tfe_project.operator.name
+  visibility = "organization"
   organization_access {
-  manage_workspaces       = true
+    manage_workspaces = true
   }
   organization = data.tfe_organization.this.name
 }
 
 resource "tfe_team_project_access" "admin" {
-  access       = "admin"
-  team_id      = tfe_team.operator.id
-  project_id   = tfe_project.operator.id
+  access     = "admin"
+  team_id    = tfe_team.operator.id
+  project_id = tfe_project.operator.id
 }
 
 resource "tfe_team_token" "operator" {
@@ -69,17 +69,17 @@ resource "kubernetes_secret" "operator" {
   }
 
   data = {
-    token =  "${tfe_team_token.operator.token}"
+    token = "${tfe_team_token.operator.token}"
   }
 }
 
 # Terraform Cloud Operator for K8s helm chart
 resource "helm_release" "operator" {
   name       = "terraform-cloud-operator"
-  repository = "https://helm.releases.hashicorp.com" 
+  repository = "https://helm.releases.hashicorp.com"
   chart      = "terraform-cloud-operator"
   version    = "2.0.0-beta8"
-  namespace = kubernetes_secret.operator.metadata[0].namespace
-  devel = "true" #allow beta chart
+  namespace  = kubernetes_secret.operator.metadata[0].namespace
+  devel      = "true" #allow beta chart
 
 }
