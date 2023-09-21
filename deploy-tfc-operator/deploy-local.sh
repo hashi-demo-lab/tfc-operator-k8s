@@ -7,7 +7,10 @@ kubectl config use-context docker-desktop
 kubectl config view --raw > $HOME/kubeconfig
 export KUBE_CONFIG_PATH=$HOME/kubeconfig # Environment used by terraform run
 
-terraform init; terraform apply -auto-approve;
+terraform init; terraform apply -auto-approve
 
-kubectl get namespace;
-kubectl -n app-hashibank get pods;
+kubectl get namespace
+kubectl -n app-hashibank get pods
+
+namespace="app-hashibank";
+kubectl config set-context --current --namespace="$namespace"

@@ -1,0 +1,21 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: platform-eks-fargate-env1
+spec:
+  name: platform-eks-fargate-env1
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  description: Workspace created using k8s operator
+  applyMethod: auto
+  executionMode: remote
+  terraformVariables:
+    - name: namespace
+      hcl: false
+      value: "app-hashibank"
+    - name: region
+      hcl: false
+      value: "ap-southeast-2"

@@ -1,3 +1,9 @@
+# Dependency for destroy
+#terraform destroy -target="module.eks_blueprints_addons" -auto-approve
+#terraform destroy -target="module.eks" -auto-approve
+#terraform destroy -auto-approve
+
+
 provider "aws" {
   region = local.region
 }
@@ -31,9 +37,8 @@ provider "helm" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name     = basename(path.cwd)
-  region   = "us-west-2"
-  app_name = "app-hashibank"
+  name   = var.cluster_name
+  region = var.region
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -191,6 +196,6 @@ module "vpc" {
 
 resource "kubernetes_namespace_v1" "this" {
   metadata {
-    name = local.app_name
+    name = var.namespace
   }
 }
