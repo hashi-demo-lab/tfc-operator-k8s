@@ -3,7 +3,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_wafv2_web_acl" "example" {
+resource "aws_wafv2_web_acl" "this" {
   name        = var.web_acl_name
   description = "Example of a managed rule."
   scope       = "REGIONAL"

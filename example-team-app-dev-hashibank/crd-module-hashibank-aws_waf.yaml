@@ -1,0 +1,24 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Module
+metadata:
+  name: platform-eks-fargate-env1
+spec:
+  name: platform-eks-fargate-env1
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  module:
+    source: github.com/hashi-demo-lab/tfc-operator-k8s//terraform-aws-wafv2-webacl
+  variables:
+    - name: region
+    - name: web_acl_name
+  outputs:
+    - name: waf_arn
+    - name: waf_capacity
+    - name: waf_id
+    - name: waf_tags_all
+  workspace:
+    name: platform-eks-fargate-env1
+  
