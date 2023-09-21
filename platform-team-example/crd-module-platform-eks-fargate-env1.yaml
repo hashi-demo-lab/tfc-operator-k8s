@@ -10,14 +10,11 @@ spec:
       name: tfc-operator
       key: token
   module:
-    source: github.com/hashi-demo-lab/tfc-operator-k8s//eks-fargate
+    source: github.com/hashi-demo-lab/tfc-operator-k8s//eks-fargate?ref=v0.1.0
   variables:
     - name: namespace
-      value: app-hashibank
     - name: cluster_name
-      value: eks-demo-consumer
     - name: region
-      value: ap-southeast-2
   outputs:
     - name: configure_kubectl
   workspace:
