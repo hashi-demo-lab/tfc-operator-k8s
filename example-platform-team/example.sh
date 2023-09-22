@@ -4,8 +4,7 @@ VARSET=varset-UTad3ixYVAvo41W9
 doormat aws tf-push variable-set --id $VARSET --role arn:aws:iam::855831148133:role/aws_simon.lynch_test-developer
 
 kubectl config use-context docker-desktop
-NAMESPACE="app-hashibank";
-kubectl config set-context --current --namespace="$NAMESPACE"
+
 
 kubectl kustomize .
 kubectl apply -k .

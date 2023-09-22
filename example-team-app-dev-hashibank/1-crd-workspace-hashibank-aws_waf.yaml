@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Workspace
 metadata:
-  name: crd-workspace-hashibank-aws_waf
+  name: workspace-hashibank-aws_waf
 spec:
-  name: crd-workspace-hashibank-aws_waf
+  name: workspace-hashibank-aws_waf
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:

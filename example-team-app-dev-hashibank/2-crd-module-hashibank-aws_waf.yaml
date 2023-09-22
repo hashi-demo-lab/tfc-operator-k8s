@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Module
 metadata:
-  name: platform-eks-fargate-env1
+  name: module-hashibank-aws-waf
 spec:
-  name: platform-eks-fargate-env1
+  name: module-hashibank-aws-waf
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:
@@ -20,5 +20,5 @@ spec:
     - name: waf_id
     - name: waf_tags_all
   workspace:
-    name: platform-eks-fargate-env1
+    name: module-hashibank-aws-waf
   

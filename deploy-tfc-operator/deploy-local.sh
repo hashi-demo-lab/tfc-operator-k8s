@@ -1,6 +1,6 @@
 #!usr/bin/zsh
-
-#set cluster context to local docker
+namespace="app-hashibank";
+#set cluster context to local docker K8s
 kubectl config use-context docker-desktop
 
 #Export config
@@ -10,7 +10,5 @@ export KUBE_CONFIG_PATH=$HOME/kubeconfig # Environment used by terraform run
 terraform init; terraform apply -auto-approve
 
 kubectl get namespace
-kubectl -n app-hashibank get pods
-
-namespace="app-hashibank";
+kubectl -n "$namespace" get pods
 kubectl config set-context --current --namespace="$namespace"
