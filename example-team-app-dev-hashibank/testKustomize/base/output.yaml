@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  WAF_ARN_VALUE: WAF_ARN_TEST_VALUE
+kind: ConfigMap
+metadata:
+  name: temp-waf-arn-config-ftc7fdc8kh
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/wafv2-acl-arn: WAF_ARN_TEST_VALUE
+    kubernetes.io/ingress.class: alb
+  name: hashibank
+  namespace: app-hashibank
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: hashibank
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix

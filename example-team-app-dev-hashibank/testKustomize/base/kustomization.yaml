@@ -16,6 +16,9 @@ replacements:
           kind: Ingress
           name: hashibank
         fieldPaths:
-          - metadata/annotations/alb.ingress.kubernetes.io/wafv2-acl-arn
+          - metadata.annotations.[alb.ingress.kubernetes.io/wafv2-acl-arn]
+        options:
+          create: true
+      
 
 
