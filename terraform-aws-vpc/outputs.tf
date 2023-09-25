@@ -1,10 +1,10 @@
 output "vpc_id" {
-  description = ""
+  description = "vpc id"
   value       = module.vpc.default_vpc_id
 }
 
 output "private_subnets" {
-  description = ""
+  description = "private subnet ids"
   value       = module.vpc.private_subnets
 }
 
