@@ -20,7 +20,7 @@ spec:
       hcl: false
       value: "eks-cluster"
     - name: private_subnets
-      hcl: false
+      hcl: true
       valueFrom:
         configMapKeyRef:
           name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
