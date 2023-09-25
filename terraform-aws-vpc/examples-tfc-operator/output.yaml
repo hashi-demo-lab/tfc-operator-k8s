@@ -1,0 +1,47 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Module
+metadata:
+  name: module-vpc-eks-cluster
+spec:
+  module:
+    source: github.com/hashi-demo-lab/tfc-operator-k8s//terraform-aws-vpc
+  name: module-vpc-eks-cluster
+  organization: hashi-demos-apj
+  outputs:
+  - name: vpc_id
+  - name: private_subnets
+  token:
+    secretKeyRef:
+      key: token
+      name: tfc-operator
+  variables:
+  - name: region
+  - name: vpc_name
+  - name: vpc_cidr
+  workspace:
+    name: ws-module-vpc-eks-cluster
+---
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: ws-module-vpc-eks-cluster
+spec:
+  applyMethod: auto
+  description: Workspace created using k8s operator
+  executionMode: remote
+  name: ws-module-vpc-eks-cluster
+  organization: hashi-demos-apj
+  terraformVariables:
+  - hcl: false
+    name: region
+    value: ap-southeast-2
+  - hcl: false
+    name: vpc_name
+    value: vpc-eks-cluster
+  - hcl: false
+    name: vpc_cidr
+    value: 10.0.0.0/16
+  token:
+    secretKeyRef:
+      key: token
+      name: tfc-operator
