@@ -63,3 +63,6 @@ kubectl config set-context --current --namespace="$namespace"
 
 #force delete namespace
 kubectl delete namespace team1-project-a --grace-period=0 --force
+
+namespace="app-hashibank"
+kubectl config set-context --current --namespace="$namespace"

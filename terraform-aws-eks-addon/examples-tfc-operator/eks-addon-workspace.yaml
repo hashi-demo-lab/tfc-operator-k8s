@@ -27,7 +27,7 @@ spec:
       value: "1.27"
     - name: oidc_provider_arn
       hcl: false
-      value: ""
+      value: "aaa"
     - name: cluster_certificate_authority_data
       hcl: false
-      value: ""
+      value: "aaa"

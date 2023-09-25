@@ -21,4 +21,4 @@ spec:
       value: "vpc-eks-cluster"
     - name: vpc_cidr
       hcl: false
-      vaule: "10.0.0.0/16"
+      value: "10.0.0.0/16"

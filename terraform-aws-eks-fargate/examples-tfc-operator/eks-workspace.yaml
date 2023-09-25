@@ -21,7 +21,13 @@ spec:
       value: "eks-cluster"
     - name: private_subnets
       hcl: false
-      value: "[]"
+      valueFrom:
+        ConfigMapKeyRef:
+          name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
+          key: private_subnets # VPC workspace outputn with list of private subnets
     - name: vpc_id
       hcl: false
-      value: "vpc_id"
+      valueFrom:
+        ConfigMapKeyRef:
+          name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
+          key: vpc_id # VPC workspace output for VPC id
