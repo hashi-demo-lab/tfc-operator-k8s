@@ -11,9 +11,9 @@ kubectl config set-context --current --namespace="$NAMESPACE"
 
 kubectl apply -k .
 
-kubectl get modules module-vpc-eks-cluster --watch -o yaml
+kubectl get modules module-eks-cluster-fargate --watch; kubectl get workspace ws-module-eks-cluster-fargate --watch
 
-
+kubectl describe configmap ws-module-eks-cluster-fargate-outputs
 
 
 # Get all pods in the namespace and store them in an array

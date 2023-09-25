@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Workspace
 metadata:
-  name: ws-module-vpc-eks-cluster
+  name: ws-module-eks-cluster-fargate
 spec:
-  name: ws-module-vpc-eks-cluster
+  name: ws-module-eks-cluster-fargate
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:
@@ -22,12 +22,12 @@ spec:
     - name: private_subnets
       hcl: false
       valueFrom:
-        ConfigMapKeyRef:
+        configMapKeyRef:
           name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
           key: private_subnets # VPC workspace outputn with list of private subnets
     - name: vpc_id
       hcl: false
       valueFrom:
-        ConfigMapKeyRef:
+        configMapKeyRef:
           name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
           key: vpc_id # VPC workspace output for VPC id
