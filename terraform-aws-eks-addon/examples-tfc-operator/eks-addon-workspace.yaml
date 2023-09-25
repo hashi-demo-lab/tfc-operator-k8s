@@ -1,0 +1,33 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: ws-module-eks-cluster-addon
+spec:
+  name: ws-module-eks-cluster-addon
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  description: Workspace created using k8s operator
+  applyMethod: auto
+  executionMode: remote
+  terraformVariables:
+    - name: region
+      hcl: false
+      value: "ap-southeast-2"
+    - name: cluster_name
+      hcl: false
+      value: "eks-cluster"
+    - name: cluster_endpoint
+      hcl: false
+      value: "cluster_endpoint"
+    - name: cluster_version
+      hcl: false
+      value: "1.27"
+    - name: oidc_provider_arn
+      hcl: false
+      value: ""
+    - name: cluster_certificate_authority_data
+      hcl: false
+      value: ""
