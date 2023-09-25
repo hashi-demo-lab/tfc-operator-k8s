@@ -18,16 +18,35 @@ spec:
       value: "ap-southeast-2"
     - name: cluster_name
       hcl: false
-      value: "eks-cluster"
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
+          key: cluster_name # EKS Cluster Name
+    - name: vpc_id
+      hcl: false
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
+          key: vpc_id # VPC workspace output for VPC id
     - name: cluster_endpoint
       hcl: false
-      value: "cluster_endpoint"
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
+          key: cluster_endpoint # EKS cluster_endpoint
     - name: cluster_version
       hcl: false
-      value: "1.27"
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
+          key: cluster_version # EKS K8s version
     - name: oidc_provider_arn
-      hcl: false
-      value: "aaa"
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
+          key: oidc_provider_arn # EKS OIDC Arn
     - name: cluster_certificate_authority_data
-      hcl: false
-      value: "aaa"
+      valueFrom:
+        configMapKeyRef:
+          name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
+          key: cluster_certificate_authority_data # VPC workspace output for VPC id
