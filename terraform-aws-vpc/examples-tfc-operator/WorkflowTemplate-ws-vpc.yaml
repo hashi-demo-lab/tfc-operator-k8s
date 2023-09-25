@@ -31,8 +31,8 @@ spec:
       # of the resource (not just labels). Multiple AND conditions can be represented by comma
       # delimited expressions.
       # For more details: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-      successCondition: status.succeeded > 0
-      failureCondition: status.failed > 3
+      successCondition: status.run.status in (applied, planned_and_finished)
+      failureCondition: status.run.status in (errored, discarded, canceled)
       manifest: |               #put your kubernetes spec here
           apiVersion: app.terraform.io/v1alpha2
           kind: Workspace
