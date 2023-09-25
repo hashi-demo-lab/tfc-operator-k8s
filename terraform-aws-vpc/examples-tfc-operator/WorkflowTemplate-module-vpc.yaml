@@ -1,0 +1,60 @@
+# in a workflow. The resource template type accepts any k8s manifest
+# (including CRDs) and can perform any `kubectl` action against it (e.g. create,
+# apply, delete, patch).
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  generateName: ws-vpc-
+spec:
+  arguments:
+    parameters:
+    - name: region
+      default: "ap-southeast-2"
+    - name: vpc-name
+      default: "vpc-eks-cluster"
+    - name: vpc-cidr
+    - name: environment
+    - name: team
+      default: bu1
+    - name: appid
+      default: app123
+    - name: org
+      default: hashi-demos-apj
+  templates:
+  - name: ws-vpc
+    resource:                   # indicates that this is a resource template
+      action: create            # can be any kubectl action (e.g. create, delete, apply, patch)
+      # The successCondition and failureCondition are optional expressions.
+      # If failureCondition is true, the step is considered failed.
+      # If successCondition is true, the step is considered successful.
+      # They use kubernetes label selection syntax and can be applied against any field
+      # of the resource (not just labels). Multiple AND conditions can be represented by comma
+      # delimited expressions.
+      # For more details: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+      successCondition: status.succeeded > 0
+      failureCondition: status.failed > 3
+      manifest: |               #put your kubernetes spec here
+          apiVersion: app.terraform.io/v1alpha2
+          kind: Workspace
+          metadata:
+            name: ws-vpc-"{{workflow.parameters.team}}{{workflow.parameters.environment}}{{workflow.parameters.appid}}"
+          spec:
+            name: ws-vpc-"{{workflow.parameters.team}}{{workflow.parameters.environment}}{{workflow.parameters.appid}}"
+            organization: "{{workflow.parameters.org}}"
+            token:
+              secretKeyRef:
+                name: tfc-operator
+                key: token
+            description: Workspace created using k8s operator
+            applyMethod: auto
+            executionMode: remote
+            terraformVariables:
+              - name: region
+                hcl: false
+                value: "{{workflow.parameters.region}}"
+              - name: vpc_name
+                hcl: false
+                value: "{{workflow.parameters.vpc-name}}"
+              - name: vpc_cidr
+                hcl: false
+                value: "{{workflow.parameters.vpc-cidr}}"

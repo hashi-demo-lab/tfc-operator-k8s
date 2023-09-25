@@ -12,10 +12,39 @@ spec:
       value: vpc-eks-cluster
     - name: vpc-cidr
       value: 10.0.0.0/16
-
   templates:
   - name: apply-terraform
     steps:
+    - - name: apply-workspace
+        template: kubectl-apply
+        arguments:
+          parameters:
+          - name: yaml-content
+            value: |
+              apiVersion: app.terraform.io/v1alpha2
+              kind: Workspace
+              metadata:
+                name: ws-module-vpc-eks-cluster
+              spec:
+                applyMethod: auto
+                description: Workspace created using k8s operator
+                executionMode: remote
+                name: ws-module-vpc-eks-cluster
+                organization: hashi-demos-apj
+                terraformVariables:
+                - hcl: false
+                  name: region
+                  value: "{{workflow.parameters.region}}"
+                - hcl: false
+                  name: vpc_name
+                  value: "{{workflow.parameters.vpc-name}}"
+                - hcl: false
+                  name: vpc_cidr
+                  value: "{{workflow.parameters.vpc-cidr}}"
+                token:
+                  secretKeyRef:
+                    key: token
+                    name: tfc-operator
     - - name: apply-module
         template: kubectl-apply
         arguments:
@@ -47,38 +76,7 @@ spec:
                   value: "{{workflow.parameters.vpc-cidr}}"
                 workspace:
                   name: ws-module-vpc-eks-cluster
-
-    - - name: apply-workspace
-        template: kubectl-apply
-        arguments:
-          parameters:
-          - name: yaml-content
-            value: |
-              apiVersion: app.terraform.io/v1alpha2
-              kind: Workspace
-              metadata:
-                name: ws-module-vpc-eks-cluster
-              spec:
-                applyMethod: auto
-                description: Workspace created using k8s operator
-                executionMode: remote
-                name: ws-module-vpc-eks-cluster
-                organization: hashi-demos-apj
-                terraformVariables:
-                - hcl: false
-                  name: region
-                  value: "{{workflow.parameters.region}}"
-                - hcl: false
-                  name: vpc_name
-                  value: "{{workflow.parameters.vpc-name}}"
-                - hcl: false
-                  name: vpc_cidr
-                  value: "{{workflow.parameters.vpc-cidr}}"
-                token:
-                  secretKeyRef:
-                    key: token
-                    name: tfc-operator
-
+                  
   - name: kubectl-apply
     inputs:
       parameters:
