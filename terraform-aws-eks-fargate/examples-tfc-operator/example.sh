@@ -13,7 +13,7 @@ kubectl apply -k .
 
 kubectl get modules module-eks-cluster-fargate --watch; kubectl get workspace ws-module-eks-cluster-fargate --watch
 
-kubectl describe configmap ws-module-eks-cluster-fargate-outputs
+kubectl get configmap ws-module-eks-cluster-fargate-outputs -o yaml
 
 
 # Get all pods in the namespace and store them in an array
