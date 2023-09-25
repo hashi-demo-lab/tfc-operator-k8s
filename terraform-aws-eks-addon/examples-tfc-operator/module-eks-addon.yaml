@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Module
 metadata:
-  name: module-eks-cluster-addon
+  name: module-eks-addon
 spec:
-  name: module-eks-cluster-addon
+  name: module-eks-addon
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:
@@ -23,4 +23,4 @@ spec:
     - name: aws_load_balancer_controller
     - name: argo_workflows
   workspace:
-    name: ws-module-eks-cluster-addon
+    name: ws-module-eks-addon

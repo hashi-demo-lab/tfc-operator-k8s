@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Workspace
 metadata:
-  name: ws-module-eks-cluster-addon
+  name: ws-module-eks-addon
 spec:
-  name: ws-module-eks-cluster-addon
+  name: ws-module-eks-addon
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:
@@ -49,4 +49,4 @@ spec:
       valueFrom:
         configMapKeyRef:
           name: ws-module-eks-cluster-fargate-outputs #ConfigMap with EKS workspace outputs
-          key: cluster_certificate_authority_data # VPC workspace output for VPC id
+          key: cluster_certificate_authority_data # EKS Cluster certificate
