@@ -1,6 +1,6 @@
-variable "vpc_cidr" {
+variable "region" {
   type    = string
-  default = "10.0.0.0/16"
+  default = "ap-southeast-2"
 }
 
 variable "vpc_name" {
@@ -8,7 +8,8 @@ variable "vpc_name" {
   default = "eks-vpc"
 }
 
-variable "region" {
+variable "vpc_cidr" {
   type    = string
-  default = "ap-southeast-2"
+  default = "10.0.0.0/16"
 }
+

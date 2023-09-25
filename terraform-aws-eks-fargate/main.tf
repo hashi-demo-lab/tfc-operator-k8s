@@ -26,6 +26,8 @@ module "eks" {
   create_cluster_security_group = false
   create_node_security_group    = false
 
+  cluster_enabled_log_types = [] #disabling logs for cost - lab only
+
   fargate_profiles = {
     app_wildcard = {
       selectors = [

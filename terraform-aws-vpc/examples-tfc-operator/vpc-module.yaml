@@ -1,0 +1,22 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Module
+metadata:
+  name: module-vpc-eks-cluster
+spec:
+  name: module-vpc-eks-cluster
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  module:
+    source: github.com/hashi-demo-lab/tfc-operator-k8s//terraform-aws-vpc
+  variables:
+    - name: region
+    - name: vpc_name
+    - name: vpc_cidr
+  outputs:
+    - name: vpc_id
+    - name: private_subnets
+  workspace:
+    name: ws-module-vpc-eks-cluster

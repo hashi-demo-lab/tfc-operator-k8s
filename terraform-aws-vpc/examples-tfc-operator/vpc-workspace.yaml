@@ -1,0 +1,24 @@
+apiVersion: app.terraform.io/v1alpha2
+kind: Workspace
+metadata:
+  name: ws-module-vpc-eks-cluster
+spec:
+  name: ws-module-vpc-eks-cluster
+  organization: hashi-demos-apj # replace with your org name
+  token:
+    secretKeyRef:
+      name: tfc-operator
+      key: token
+  description: Workspace created using k8s operator
+  applyMethod: auto
+  executionMode: remote
+  terraformVariables:
+    - name: region
+      hcl: false
+      value: "ap-southeast-2"
+    - name: vpc_name
+      hcl: false
+      value: "vpc-eks-cluster"
+    - name: vpc_cidr
+      hcl: false
+      vaule: "10.0.0.0/16"
