@@ -1,10 +1,15 @@
 locals {
 
   tags = {
-    Blueprint  = var.vpc_name
+    Blueprint  = var.cluster_name
     GithubRepo = "github.com/aws-ia/terraform-aws-eks-blueprints"
   }
 }
+
+provider "aws" {
+  region = var.region
+}
+
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
