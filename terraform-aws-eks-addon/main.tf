@@ -55,10 +55,10 @@ module "eks_blueprints_addons" {
   }
 
   # Enable Fargate logging
-  enable_fargate_fluentbit = true
+/*   enable_fargate_fluentbit = true
   fargate_fluentbit = {
     flb_log_cw = true
-  }
+  } */
 
   enable_aws_load_balancer_controller = true
   aws_load_balancer_controller = {

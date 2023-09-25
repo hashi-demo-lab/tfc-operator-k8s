@@ -16,15 +16,15 @@ variable "cluster_name" {
 
 variable "cluster_endpoint" {
   type    = string
-  default = ""
+  default = "https://C9D5A84468B401804D50A0E98AFD2D3F.sk1.ap-southeast-2.eks.amazonaws.com"
 }
 
 variable "cluster_version" {
   type    = string
-  default = ""
+  default = "1.27"
 }
 
 variable "oidc_provider_arn" {
   type    = string
-  default = ""
+  default = "arn:aws:iam::855831148133:oidc-provider/oidc.eks.ap-southeast-2.amazonaws.com/id/C9D5A84468B401804D50A0E98AFD2D3F"
 }
