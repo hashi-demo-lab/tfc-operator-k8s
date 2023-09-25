@@ -20,6 +20,7 @@ spec:
     - name: oidc_provider_arn
     - name: cluster_certificate_authority_data
   outputs:
-    - name: configure_kubectl
+    - name: aws_load_balancer_controller
+    - name: argo_workflows
   workspace:
     name: ws-module-eks-cluster-addon
