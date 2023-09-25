@@ -45,6 +45,7 @@ module "eks_blueprints_addons" {
   cluster_endpoint  = var.cluster_endpoint
   cluster_version   = var.cluster_version
   oidc_provider_arn = var.oidc_provider_arn
+  enable_argo_workflows = true
 
   # We want to wait for the Fargate profiles to be deployed first
   #create_delay_dependencies = [for prof in module.eks.fargate_profiles : prof.fargate_profile_arn]
