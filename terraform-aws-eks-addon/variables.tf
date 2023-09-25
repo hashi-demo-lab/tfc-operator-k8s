@@ -28,3 +28,8 @@ variable "oidc_provider_arn" {
   type    = string
   default = "arn:aws:iam::855831148133:oidc-provider/oidc.eks.ap-southeast-2.amazonaws.com/id/C9D5A84468B401804D50A0E98AFD2D3F"
 }
+
+variable "cluster_certificate_authority_data" {
+  type = string
+  default =  ""
+}

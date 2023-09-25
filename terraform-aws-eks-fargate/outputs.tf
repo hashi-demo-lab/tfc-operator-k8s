@@ -22,3 +22,8 @@ output "oidc_provider_arn" {
   description = "eks idc_provider_arn"
   value       = module.eks.oidc_provider_arn
 }
+
+output "cluster_certificate_authority_data" {
+  description = "eks output cluster_certificate_authority_data"
+  value       = module.eks.cluster_certificate_authority_data
+}
