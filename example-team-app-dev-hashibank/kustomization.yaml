@@ -4,4 +4,3 @@ resources:
   - 1-crd-module-aws-waf-hashibank.yaml
   - 2-deployment-hashibank.yaml
   - 3-ingress-alb-hashibank.yaml
-  - 4-job-ingress-aws-waf-hashibank.yaml

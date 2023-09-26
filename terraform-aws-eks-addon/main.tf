@@ -45,7 +45,7 @@ module "eks_blueprints_addons" {
   cluster_endpoint      = var.cluster_endpoint
   cluster_version       = var.cluster_version
   oidc_provider_arn     = var.oidc_provider_arn
-  enable_argo_workflows = true
+  enable_argo_workflows = false
 
   # We want to wait for the Fargate profiles to be deployed first
   #create_delay_dependencies = [for prof in module.eks.fargate_profiles : prof.fargate_profile_arn]
@@ -82,12 +82,12 @@ module "eks_blueprints_addons" {
   }
 
   # Enable Fargate logging
-  /*   enable_fargate_fluentbit = true
+  enable_fargate_fluentbit = true
   fargate_fluentbit = {
     flb_log_cw = true
-  } */
+  } 
 
-  #enable_aws_load_balancer_controller = true
+  enable_aws_load_balancer_controller = true
   aws_load_balancer_controller = {
     set = [
       {

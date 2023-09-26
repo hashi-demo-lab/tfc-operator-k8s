@@ -9,12 +9,7 @@ spec:
       initContainers:
         - name: check-configmap
           image: bitnami/kubectl:latest
-          command:
-            - sh
-            - -c
-            - |
-              kubectl get configmap my-configmap || exit 1
-              sleep 20
+          command: ["kubectl", "get", "configmap", "ws-module-aws-waf-hashibank-outputs"]
       containers:
         - name: main-container
           image: bitnami/kubectl:latest
@@ -29,6 +24,7 @@ spec:
               else
                 # Your main logic here
                 echo "WAF_ARN is set with value: $WAF_ARN"
+                kubectl -n app-hashibank patch ingress hashibank --type=json -p "[{\"op\": \"replace\", \"path\": \"/metadata/annotations/alb.ingress.kubernetes.io~1wafv2-acl-arn\", \"value\": \"$WAF_ARN\"}]"
               fi
           env:
             - name: WAF_ARN
