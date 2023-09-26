@@ -13,3 +13,7 @@ variable "namespace" {
   type = string
   default = "app-platform"
 }
+
+variable "current_context" {
+  type = string
+}

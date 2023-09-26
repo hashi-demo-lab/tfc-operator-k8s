@@ -75,6 +75,7 @@ resource "kubernetes_secret" "operator" {
 
 # Terraform Cloud Operator for K8s helm chart
 resource "helm_release" "operator" {
+  depends_on = [ kubernetes_namespace.operator ]
   name       = "terraform-cloud-operator"
   repository = "https://helm.releases.hashicorp.com"
   chart      = "terraform-cloud-operator"

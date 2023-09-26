@@ -1,6 +1,8 @@
 #!usr/bin/zsh
 namespace="app-platform-k8s";
 #set cluster context to local docker K8s
+
+kubectl config current-context
 kubectl config use-context docker-desktop
 
 #Export config
