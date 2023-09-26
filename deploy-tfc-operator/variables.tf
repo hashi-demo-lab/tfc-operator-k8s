@@ -5,11 +5,11 @@ variable "organization" {
 
 variable "operator_team" {
   type    = string
-  default = "tfc-operator-platformteam"
+  default = "tfc-platformteam"
 
 }
 
 variable "namespace" {
   type = string
-  default = "app-hashibank"
+  default = "app-platform"
 }

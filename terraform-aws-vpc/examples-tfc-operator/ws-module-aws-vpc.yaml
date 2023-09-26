@@ -1,9 +1,9 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Workspace
 metadata:
-  name: ws-module-vpc-eks-cluster
+  name: ws-module-aws-vpc
 spec:
-  name: ws-module-vpc-eks-cluster
+  name: ws-module-aws-vpc
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:

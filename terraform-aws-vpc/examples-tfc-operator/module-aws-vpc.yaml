@@ -1,7 +1,7 @@
 apiVersion: app.terraform.io/v1alpha2
 kind: Module
 metadata:
-  name: module-vpc-eks-cluster
+  name: module-aws-vpc
 spec:
   name: module-vpc-eks-cluster
   organization: hashi-demos-apj # replace with your org name
@@ -19,4 +19,4 @@ spec:
     - name: vpc_id
     - name: private_subnets
   workspace:
-    name: ws-module-vpc-eks-cluster
+    name: ws-module-aws-vpc

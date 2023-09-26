@@ -26,7 +26,7 @@ spec:
       hcl: false
       valueFrom:
         configMapKeyRef:
-          name: ws-module-vpc-eks-cluster-outputs #ConfigMap with VPC workspace outputs
+          name: ws-module-aws-vpc-outputs #ConfigMap with VPC workspace outputs
           key: vpc_id # VPC workspace output for VPC id
     - name: cluster_endpoint
       hcl: false
