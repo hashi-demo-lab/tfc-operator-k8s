@@ -21,7 +21,7 @@ spec:
               else
                 # Getting WAF Arn for app ALB ingress - WAF ACL created by Terraform
                 echo "WAF_ARN is set with value: $WAF_ARN"
-                kubectl -n app-hashibank patch ingress hashibank --type=json -p "[{\"op\": \"replace\", \"path\": \"/metadata/annotations/alb.ingress.kubernetes.io~1wafv2-acl-arn\", \"value\": \"$WAF_ARN\"}]"
+                kubectl annotate ingress hashibank alb.ingress.kubernetes.io/wafv2-acl-arn=$WAF_ARN --overwrite
               fi
           env:
             - name: WAF_ARN
