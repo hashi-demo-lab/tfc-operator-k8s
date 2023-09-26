@@ -23,9 +23,7 @@ provider "tfe" {
 }
 
 provider "kubernetes" {
-
 }
 
 provider "helm" {
-  # Configuration options
 }
