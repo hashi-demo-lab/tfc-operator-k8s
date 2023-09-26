@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hashibank
-  namespace: app-hashibank
 spec:
   replicas: 1
   selector:
