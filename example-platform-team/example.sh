@@ -27,6 +27,6 @@ kubectl get module --watch
 #kubectl get configmap platform-eks-fargate-env1-module-outputs -o yaml
 
 #To force run
-#kubectl patch module platform-eks-fargate-env1 --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
+#kubectl patch module module-eks-addon --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
 
 exit
