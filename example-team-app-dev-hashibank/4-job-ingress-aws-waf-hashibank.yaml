@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: poll-configmap-hashibank
 spec:
+  backoffLimit: 30
   template:
     spec:
       initContainers:
