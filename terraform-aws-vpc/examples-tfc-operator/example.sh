@@ -13,9 +13,9 @@ kubectl config set-context --current --namespace="$NAMESPACE"
 kubectl kustomize .
 kubectl apply -k .
 
-kubectl get modules module-aws-vpc --watch -o yaml
+kubectl get modules --watch
 
-
+exit
 
 
 # Get all pods in the namespace and store them in an array
