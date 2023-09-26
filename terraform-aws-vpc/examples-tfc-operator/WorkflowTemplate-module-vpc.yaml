@@ -23,7 +23,7 @@ spec:
   templates:
   - name: module-vpc
     resource:                   # indicates that this is a resource template
-      action: create            # can be any kubectl action (e.g. create, delete, apply, patch)
+      action: apply            # can be any kubectl action (e.g. create, delete, apply, patch)
       # The successCondition and failureCondition are optional expressions.
       # If failureCondition is true, the step is considered failed.
       # If successCondition is true, the step is considered successful.
