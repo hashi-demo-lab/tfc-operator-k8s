@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ingress-patcher-rolebinding
+  namespace: app-hashibank
+subjects:
+- kind: ServiceAccount
+  name: ingress-patcher-sa
+  namespace: app-hashibank
+roleRef:
+  kind: Role
+  name: ingress-patcher-role
+  apiGroup: rbac.authorization.k8s.io

@@ -6,10 +6,7 @@ spec:
   backoffLimit: 30
   template:
     spec:
-      initContainers:
-        - name: check-configmap
-          image: bitnami/kubectl:latest
-          command: ["kubectl", "get", "configmap", "ws-module-aws-waf-hashibank-outputs"]
+      serviceAccountName: ingress-patcher-sa # this needs to be created see role folder
       containers:
         - name: main-container
           image: bitnami/kubectl:latest
