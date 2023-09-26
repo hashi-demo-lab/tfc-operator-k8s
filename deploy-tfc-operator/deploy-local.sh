@@ -12,3 +12,7 @@ terraform init; terraform apply -auto-approve
 kubectl get namespace
 kubectl -n "$namespace" get pods
 kubectl config set-context --current --namespace="$namespace"
+
+#install arg workflows tpo argo namespace
+kubectl create namespace argo
+kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.11/install.yaml

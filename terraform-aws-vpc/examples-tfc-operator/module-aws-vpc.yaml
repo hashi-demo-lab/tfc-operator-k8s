@@ -3,7 +3,7 @@ kind: Module
 metadata:
   name: module-aws-vpc
 spec:
-  name: module-vpc-eks-cluster
+  name: module-aws-vpc
   organization: hashi-demos-apj # replace with your org name
   token:
     secretKeyRef:

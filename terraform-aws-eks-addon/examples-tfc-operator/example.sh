@@ -6,7 +6,7 @@ doormat aws tf-push variable-set --id $VARSET --role arn:aws:iam::855831148133:r
 kubectl config use-context docker-desktop
 
 #namespace
-NAMESPACE="app-hashibank"
+NAMESPACE="app-platform-k8s"
 kubectl config set-context --current --namespace="$NAMESPACE"
 
 kubectl apply -k .

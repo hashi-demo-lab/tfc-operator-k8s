@@ -7,13 +7,13 @@ doormat aws tf-push variable-set --id $VARSET --role arn:aws:iam::855831148133:r
 
 
 kubectl config use-context docker-desktop
-NAMESPACE="app-hashibank"
+NAMESPACE="app-platform-k8s"
 kubectl config set-context --current --namespace="$NAMESPACE"
 
 kubectl kustomize .
 kubectl apply -k .
 
-kubectl get modules module-vpc-eks-cluster --watch -o yaml
+kubectl get modules module-aws-vpc --watch -o yaml
 
 
 
@@ -34,6 +34,6 @@ kubectl get modules module-vpc-eks-cluster --watch -o yaml
 #kubectl get configmap platform-eks-fargate-env1-module-outputs -o yaml
 
 #To force run
-#kubectl patch module platform-eks-fargate-env1 --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
+#kubectl patch module module-aws-vpc --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
 
 #exit
