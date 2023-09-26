@@ -1,27 +1,4 @@
 apiVersion: app.terraform.io/v1alpha2
-kind: Module
-metadata:
-  name: module-aws-vpc
-spec:
-  module:
-    source: github.com/hashi-demo-lab/tfc-operator-k8s//terraform-aws-vpc
-  name: module-aws-vpc
-  organization: hashi-demos-apj
-  outputs:
-  - name: vpc_id
-  - name: private_subnets
-  token:
-    secretKeyRef:
-      key: token
-      name: tfc-operator
-  variables:
-  - name: region
-  - name: vpc_name
-  - name: vpc_cidr
-  workspace:
-    name: ws-module-aws-vpc
----
-apiVersion: app.terraform.io/v1alpha2
 kind: Workspace
 metadata:
   name: ws-module-aws-vpc
@@ -45,3 +22,26 @@ spec:
     secretKeyRef:
       key: token
       name: tfc-operator
+---
+apiVersion: app.terraform.io/v1alpha2
+kind: Module
+metadata:
+  name: module-aws-vpc
+spec:
+  module:
+    source: github.com/hashi-demo-lab/tfc-operator-k8s//terraform-aws-vpc
+  name: module-aws-vpc
+  organization: hashi-demos-apj
+  outputs:
+  - name: vpc_id
+  - name: private_subnets
+  token:
+    secretKeyRef:
+      key: token
+      name: tfc-operator
+  variables:
+  - name: region
+  - name: vpc_name
+  - name: vpc_cidr
+  workspace:
+    name: ws-module-aws-vpc
