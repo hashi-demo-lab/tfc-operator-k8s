@@ -87,7 +87,7 @@ module "eks_blueprints_addons" {
     flb_log_cw = true
   } */
 
-  enable_aws_load_balancer_controller = true
+  #enable_aws_load_balancer_controller = true
   aws_load_balancer_controller = {
     set = [
       {

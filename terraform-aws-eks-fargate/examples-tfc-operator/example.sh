@@ -11,10 +11,7 @@ kubectl config set-context --current --namespace="$NAMESPACE"
 
 kubectl apply -k .
 
-kubectl get modules module-eks-cluster-fargate --watch; kubectl get workspace ws-module-eks-cluster-fargate --watch
-
-kubectl get configmap ws-module-eks-cluster-fargate-outputs -o yaml
-
+kubectl get module --watch
 
 # Get all pods in the namespace and store them in an array
 #POD_ARRAY=($(kubectl get pods -n $NAMESPACE -o jsonpath='{.items[*].metadata.name}'))
@@ -29,9 +26,9 @@ kubectl get configmap ws-module-eks-cluster-fargate-outputs -o yaml
 #wait
 
 
-#kubectl get configmap platform-eks-fargate-env1-module-outputs -o yaml
+#kubectl get configmap ws-module-eks-cluster-fargate-outputs -o yaml
 
 #To force run
-#kubectl patch module platform-eks-fargate-env1 --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
+#kubectl patch module module-eks-cluster-fargate --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'
 
 #exit

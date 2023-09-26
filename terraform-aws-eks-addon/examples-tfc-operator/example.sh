@@ -11,9 +11,11 @@ kubectl config set-context --current --namespace="$NAMESPACE"
 
 kubectl apply -k .
 
-kubectl get workspace ws-module-eks-addon -o yaml --watch
 
-kubectl get configmap ws-module-eks-addon-outputs -o yaml
+
+kubectl get module --watch
+
+kubectl get configmap --watch
 
 #To force run
 #kubectl patch module module-eks-addon --type=merge --patch '{"spec": {"restartedAt": "'`date -u -Iseconds`'"}}'

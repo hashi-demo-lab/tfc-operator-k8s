@@ -21,6 +21,5 @@ spec:
     - name: cluster_certificate_authority_data
   outputs:
     - name: aws_load_balancer_controller
-    - name: argo_workflows
   workspace:
     name: ws-module-eks-addon
