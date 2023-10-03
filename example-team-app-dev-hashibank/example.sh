@@ -9,6 +9,7 @@ aws eks --region ap-southeast-2 update-kubeconfig --name $cluster_name
 namespace="app-hashibank"
 kubectl config set-context --current --namespace="$namespace"
 
+kubectl apply -k ./role/.
 kubectl apply -k .
 
 kubectl get module --watch
