@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  generateName: ws-vpc-
+  name: ws-vpc-template
 spec:
   arguments:
     parameters:
