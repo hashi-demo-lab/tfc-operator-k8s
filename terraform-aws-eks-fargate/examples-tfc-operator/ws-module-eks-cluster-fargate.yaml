@@ -18,7 +18,7 @@ spec:
       value: "ap-southeast-2"
     - name: cluster_name
       hcl: false
-      value: "eks-cluster"
+      value: "eks-cluster-networks"
     - name: private_subnets
       hcl: true
       valueFrom:
