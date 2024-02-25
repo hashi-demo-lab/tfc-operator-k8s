@@ -1,9 +1,9 @@
 #!usr/bin/zsh
 doormat login -f && eval $(doormat aws export --account ${DOORMAT_AWS_USER})
-VARSET=varset-UTad3ixYVAvo41W9
+VARSET=varset-GejYD48AnULoPLdT
 doormat aws tf-push variable-set --id $VARSET --role arn:aws:iam::855831148133:role/aws_simon.lynch_test-developer
 
-cluster_name="eks-cluster"
+cluster_name="eks-cluster-network"
 aws eks --region ap-southeast-2 update-kubeconfig --name $cluster_name
 
 namespace="app-hashibank"
